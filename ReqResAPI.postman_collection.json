@@ -1,0 +1,650 @@
+{
+	"info": {
+		"_postman_id": "5da34516-2b50-4be5-975b-8db216bdd469",
+		"name": "ReqResAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17623288"
+	},
+	"item": [
+		{
+			"name": "Get_List_Users_Invalid_Param_And_API_Key",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Validate Status Code\r",
+							"pm.test(\"Status code is 403\", function () {\r",
+							"    pm.response.to.have.status(403);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"// Validate Status Text\r",
+							"pm.test(\"Status text is Forbidden\", function () {\r",
+							"    pm.response.to.have.status(\"Forbidden\");\r",
+							"});\r",
+							"\r",
+							"//  Parse JSON body\r",
+							"let res = pm.response.json();\r",
+							"\r",
+							"// Validate 'error' property exists and has a value\r",
+							"pm.test(\"Response has 'error' property present and not empty\", function () {\r",
+							"    pm.expect(res).to.have.property(\"error\");\r",
+							"    pm.expect(res.error).to.be.not.null\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "reqres-free-v134234324",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/users?page=wqewqwe&per_page=wewqeqwe",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"users"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "wqewqwe"
+						},
+						{
+							"key": "per_page",
+							"value": "wewqeqwe"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post_Create_User_Login_Session_Invalid_API_Key",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Validate Status Code\r",
+							"pm.test(\"Status code is 403\", function () {\r",
+							"    pm.response.to.have.status(403);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"// Validate Status Text\r",
+							"pm.test(\"Status text is Forbidden\", function () {\r",
+							"    pm.response.to.have.status(\"Forbidden\");\r",
+							"});\r",
+							"\r",
+							"//  Parse JSON body\r",
+							"let res = pm.response.json();\r",
+							"\r",
+							"// Validate error property exists and has a value\r",
+							"pm.test(\"Response has error property present and not empty\", function () {\r",
+							"    pm.expect(res).to.have.property(\"error\", \"Invalid or inactive API key\")\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "reqres-free-v1ewrewr",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"{{email}}\",\r\n    \"password\": \"pistol\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/register",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post_Create_User_Login_Session",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Validate Status Code\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"// Validate Status Text\r",
+							"pm.test(\"Status text is Created\", function () {\r",
+							"    pm.response.to.have.status(\"Created\");\r",
+							"});\r",
+							"\r",
+							"//  Parse JSON body\r",
+							"let res = pm.response.json();\r",
+							"\r",
+							"// Validate email property exists and has a value\r",
+							"pm.test(\"Response has email property present and not empty\", function () {\r",
+							"    pm.expect(res).to.have.property(\"email\")\r",
+							"    pm.expect(res.email).to.be.not.null\r",
+							"});\r",
+							"\r",
+							"// Validate password property exists and has a value\r",
+							"pm.test(\"Response has email property present and not empty\", function () {\r",
+							"    pm.expect(res).to.have.property(\"password\")\r",
+							"    pm.expect(res.password).to.be.not.null\r",
+							"});\r",
+							"\r",
+							"// Validate id property exists and has a value\r",
+							"pm.test(\"Response has id property present and not empty\", function () {\r",
+							"     pm.expect(res).to.have.property(\"id\");\r",
+							"    pm.expect(res.id).to.be.not.null\r",
+							"});\r",
+							"\r",
+							"// Validate created at property exists and has a value\r",
+							"pm.test(\"Response has createdAt property present and not empty\", function () {\r",
+							"     pm.expect(res).to.have.property(\"createdAt\");\r",
+							"    pm.expect(res.createdAt).to.be.not.null\r",
+							"});\r",
+							"\r",
+							"pm.environment.set(\"id\", res.id);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "reqres-free-v1",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"{{email}}\",\r\n    \"password\": \"pistol\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/register",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Put_Update_User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Validate Status Code\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"// Validate Status Text\r",
+							"pm.test(\"Status text is OK\", function () {\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"});\r",
+							"\r",
+							"//  Parse JSON body\r",
+							"let res = pm.response.json();\r",
+							"\r",
+							"// Validate name property exists and has a value\r",
+							"pm.test(\"Response has name property present and not empty\", function () {\r",
+							"     pm.expect(res).to.have.property(\"name\", \"Eve\");\r",
+							"});\r",
+							"\r",
+							"// Validate job property exists and has a value\r",
+							"pm.test(\"Response has job property present and not empty\", function () {\r",
+							"     pm.expect(res).to.have.property(\"job\", \"zion resident\");\r",
+							"});\r",
+							"\r",
+							"// Validate updated at property exists and has a value\r",
+							"pm.test(\"Response has updated at property present and not empty\", function () {\r",
+							"     pm.expect(res).to.have.property(\"updatedAt\");\r",
+							"      pm.expect(res.updatedAt).to.be.not.null\r",
+							"});\r",
+							"\r",
+							"// Validate email property exists and has a value\r",
+							"pm.test(\"Response has email property present and not empty\", function () {\r",
+							"     pm.expect(res).to.have.property(\"email\", \"eve.holt@reqres.in\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "reqres-free-v1",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"{{firstName}}\",\r\n    \"email\": \"{{email}}\",\r\n    \"job\": \"zion resident\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/users/{{id}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"users",
+						"{{id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Patch_Update_User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Validate Status Code\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"// Validate Status Text\r",
+							"pm.test(\"Status text is OK\", function () {\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"});\r",
+							"\r",
+							"//  Parse JSON body\r",
+							"let res = pm.response.json();\r",
+							"\r",
+							"// Validate name property exists and has a value\r",
+							"pm.test(\"Response has token property present and not empty\", function () {\r",
+							"     pm.expect(res).to.have.property(\"name\", \"Eve\");\r",
+							"});\r",
+							"\r",
+							"// Validate job property exists and has a value\r",
+							"pm.test(\"Response has token property present and not empty\", function () {\r",
+							"     pm.expect(res).to.have.property(\"job\", \"software developer\");\r",
+							"});\r",
+							"\r",
+							"// Validate updated at property exists and has a value\r",
+							"pm.test(\"Response has token property present and not empty\", function () {\r",
+							"     pm.expect(res).to.have.property(\"updatedAt\");\r",
+							"      pm.expect(res.updatedAt).to.be.not.null\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "reqres-free-v1",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"{{firstName}}\",\r\n    \"job\": \"software developer\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/users/{{id}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"users",
+						"{{id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete_User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Validate Status Code\r",
+							"pm.test(\"Status code is 204\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"// Validate Status Text\r",
+							"pm.test(\"Status text is OK\", function () {\r",
+							"    pm.response.to.have.status(\"No Content\");\r",
+							"});\r",
+							"\r",
+							"//  Parse JSON body\r",
+							"let res = pm.response.text();\r",
+							"\r",
+							"//  Response body is empty\r",
+							"pm.test(\"Response body is empty\", function () {\r",
+							"    pm.expect(res).to.equal('');\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "reqres-free-v1",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/users/{{id}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"users",
+						"{{id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get_List_Users_Single_User_After_Delete",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Validate Status Code\r",
+							"pm.test(\"Status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"// Validate Status Text\r",
+							"pm.test(\"Status text is Not Found\", function () {\r",
+							"    pm.response.to.have.status(\"Not Found\");\r",
+							"});\r",
+							"\r",
+							"//  Parse JSON body\r",
+							"let res = pm.response.text();\r",
+							"\r",
+							"//  Response body is empty\r",
+							"pm.test(\"Response body is empty\", function () {\r",
+							"    pm.expect(res).to.equal('{}');\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "reqres-free-v1",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/users/{{id}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"users",
+						"{{id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get_List_Users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Validate Status Code\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"// Validate Status Text\r",
+							"pm.test(\"Status text is OK\", function () {\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"});\r",
+							"\r",
+							"//  Parse JSON body\r",
+							"let res = pm.response.json();\r",
+							"\r",
+							"// Validate 'page' property exists and has a value\r",
+							"pm.test(\"Response has 'page' property present and not empty\", function () {\r",
+							"    pm.expect(res).to.have.property(\"page\");\r",
+							"    pm.expect(res.page).to.be.not.null\r",
+							"});\r",
+							"\r",
+							"// Validate ' per page' property exists and has a value\r",
+							"pm.test(\"Response has 'per page' property present and not empty\", function () {\r",
+							"    pm.expect(res).to.have.property(\"per_page\");\r",
+							"    pm.expect(res.per_page).to.be.not.null\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "reqres-free-v1",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/users?page=5&per_page=2",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"users"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "5"
+						},
+						{
+							"key": "per_page",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURL",
+			"value": "https://reqres.in/api",
+			"type": "default"
+		}
+	]
+}
